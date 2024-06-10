@@ -1,0 +1,440 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="{% static 'main.css' %}">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{% static 'script.js' %}"></script>
+      <script src="{% static 'external.js' %}"></script>
+      <script src="{% static 'cloud.js' %}"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <form id="msform" method="post">
+      {% csrf_token %} 
+  <!-- progressbar -->
+  <ul id="progressbar">
+    
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- fieldsets -->
+  <fieldset>
+    {% comment %} <h2 class="fs-title">Create your account</h2>
+    <h3 class="fs-subtitle">This is step 1</h3> {% endcomment %}
+    
+    <label >1. How young are you?</label>
+    <h3 class="fs-subtitle">Simply type your age. It's just a number, after all</h3> 
+    <input type="text" name="question_1" id="email" placeholder="enter age" />
+    
+    <label >2. Gender</label>
+    <div class="gender-container">
+        <label class="radio" for="male"><input type="radio" id="male" name="question_2" value="male" checked> <h3 class="fs-subtitle">Male</h3> </label>
+        <label class="radio" for="female"><input type="radio" id="female" name="question_2" value="female">  <h3 class="fs-subtitle">Female</h3></label>
+        <label class="radio" for="trans man"><input type="radio" id="trans man" name="question_2" value="trans man">  <h3 class="fs-subtitle">Trans man</h3></label>
+        <label class="radio" for="trans woman"><input type="radio" id="trans woman" name="question_2" value="trans woman">  <h3 class="fs-subtitle">Trans woman</h3></label>
+        <label class="radio" for="non binary"><input type="radio" id="non binary" name="question_2" value="non binary">  <h3 class="fs-subtitle">Non-binary</h3></label>
+        <label class="radio" for="third gender"><input type="radio" id="third gender" name="question_2" value="third gender">  <h3 class="fs-subtitle">Third gender</h3></label>
+        <label class="radio" for="other"><input type="radio" id="other" name="question_2" value="other">  <h3 class="fs-subtitle">other</h3></label>
+    </div>
+
+    <label >3. What's Your Coding Mission Status?</label>
+      <h3 class="fs-subtitle">( Select the one that best describes your journey! )</h3> 
+    <div class="coding-mission">
+    <label class="radio" for="learningToCode">
+        <input type="radio" id="learningToCode" name="question_3" value="Learning to Code" checked>
+        <h3 class="fs-subtitle">Learning to Code</h3>
+    </label>
+    <label class="radio" for="interestedInLearning">
+        <input type="radio" id="interestedInLearning" name="question_3" value="Interested in learning to code">
+        <h3 class="fs-subtitle">Interested in learning to code</h3>
+    </label>
+    <label class="radio" for="studentDeveloper">
+        <input type="radio" id="studentDeveloper" name="question_3" value="Student Developer">
+        <h3 class="fs-subtitle">Student Developer<br>(You are currently studying and also freelancing on paid coding projects)</h3>
+    </label>
+    <label class="radio" for="codingAsHobby">
+        <input type="radio" id="codingAsHobby" name="question_3" value="Coding as a hobby">
+        <h3 class="fs-subtitle">Coding as a hobby</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_3" value="Professional Developer">
+        <h3 class="fs-subtitle">Professional Developer</h3>
+    </label>
+</div>
+<label >4. How long have you been learning to code?</label>
+    <div class="coding-mission">
+    <label class="radio" for="learningToCode">
+        <input type="radio" id="learningToCode" name="question_4" value="less tahn 1 month" checked>
+        <h3 class="fs-subtitle">Less than 1 month</h3>
+    </label>
+    <label class="radio" for="interestedInLearning">
+        <input type="radio" id="interestedInLearning" name="question_4" value="1-3 months">
+        <h3 class="fs-subtitle">1-3 months</h3>
+    </label>
+    <label class="radio" for="studentDeveloper">
+        <input type="radio" id="studentDeveloper" name="question_4" value="4-6 months">
+        <h3 class="fs-subtitle">4-6 months</h3>
+    </label>
+    <label class="radio" for="codingAsHobby">
+        <input type="radio" id="codingAsHobby" name="question_4" value="7-9 months">
+        <h3 class="fs-subtitle">7-9 months</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_4" value="10-12 months">
+        <h3 class="fs-subtitle">10-12 months</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_4" value="1-2 year">
+        <h3 class="fs-subtitle">1-2 year</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_4" value="2-3 years">
+        <h3 class="fs-subtitle">2-3 years</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_4" value="More than 3 years">
+        <h3 class="fs-subtitle">More than 3 years</h3>
+    </label>
+</div>
+
+    <input type="button" name="next" class="next action-button" value="Next"/>
+</fieldset>
+
+  <fieldset>
+    
+ <label >5. How many years have you been coding professionally?</label>
+  <div class="gender-container">
+      <label class="radio" for="male"><input type="radio" id="male" name="question_5" value="less than a year" checked> <h3 class="fs-subtitle">less than a year</h3> </label>
+      <label class="radio" for="female"><input type="radio" id="female" name="question_5" value="Other">  <h3 class="fs-subtitle">Other</h3></label>
+   </div>
+   <label >6. If Professional Developer, which of the following best describes your current job role?</label>
+    <div class="coding-mission">
+    <label class="radio" for="learningToCode">
+        <input type="radio" id="learningToCode" name="question_6" value="Full-stack developer" checked>
+        <h3 class="fs-subtitle">Full-stack developer (works on both front-end and back-end portions of applications)</h3>
+    </label>
+    <label class="radio" for="interestedInLearning">
+        <input type="radio" id="interestedInLearning" name="question_6" value="Front-end developer">
+        <h3 class="fs-subtitle">Front-end developer (specializes in the user interface and user experience aspects)</h3>
+    </label>
+    <label class="radio" for="studentDeveloper">
+        <input type="radio" id="studentDeveloper" name="question_6" value="Back-end developer">
+        <h3 class="fs-subtitle">Back-end developer (focuses on server, database, and application logic)</h3>
+    </label>
+    <label class="radio" for="codingAsHobby">
+        <input type="radio" id="codingAsHobby" name="question_6" value="DevOps specialist ">
+        <h3 class="fs-subtitle">DevOps specialist (ensures smooth deployment and operation of software)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="Data scientist or machine learning specialist">
+        <h3 class="fs-subtitle">Data scientist or machine learning specialist (analyzes complex data sets or builds AI models)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="Database administrator">
+        <h3 class="fs-subtitle">Database administrator (manages and maintains the database systems)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="System admin">
+        <h3 class="fs-subtitle">System admin (oversees and maintains IT and computer systems)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="Designer ">
+        <h3 class="fs-subtitle">Designer (focused on graphic, UI/UX, or web design)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="Mobile app developer">
+        <h3 class="fs-subtitle">Mobile app developer (specializes in developing applications for mobile platforms like Android and iOS, noting the high mobile usage in Kerala)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="IT support specialist">
+        <h3 class="fs-subtitle">IT support specialist (provides technical support and troubleshooting services)</h3>
+    </label>
+    <label class="radio" for="professionalDeveloper">
+        <input type="radio" id="professionalDeveloper" name="question_6" value="AI engineer">
+        <h3 class="fs-subtitle">AI engineer(AI developer,prompt engineer)</h3>
+    </label>
+</div>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+  
+  <fieldset>
+    <label >7. Do you have a GitHub Account ?</label>
+    <div class="gender-container">
+        <label class="radio" for="male"><input type="radio" id="male" name="question_7" value="Yes" checked> <h3 class="fs-subtitle">Yes</h3> </label>
+        <label class="radio" for="female"><input type="radio" id="female" name="question_7" value="No">  <h3 class="fs-subtitle">No</h3></label>
+    </div>
+    <label >8. Please provide the link to your GitHub account. Type 'NA' if you do not have one.</label>    
+    <input type="text" name="question_8" placeholder="First Name" />
+    <label >9. Which of the following fields are you interested in or worked with? Select any that apply:</label>   
+ <div class="coding-mission">
+    <label class="checkbox" for="learningToCode">
+        <input type="checkbox" id="learningToCode" name="question_9" value="Full-stack developer">
+        <h3 class="fs-subtitle">Full-stack developer (works on both front-end and back-end portions of applications)</h3>
+    </label>
+    <label class="checkbox" for="interestedInLearning">
+        <input type="checkbox" id="interestedInLearning" name="question_9" value="Front-end developer">
+        <h3 class="fs-subtitle">Front-end developer (specializes in the user interface and user experience aspects)</h3>
+    </label>
+    <label class="checkbox" for="studentDeveloper">
+        <input type="checkbox" id="studentDeveloper" name="question_9" value="Back-end developer">
+        <h3 class="fs-subtitle">Back-end developer (focuses on server, database, and application logic)</h3>
+    </label>
+    <label class="checkbox" for="codingAsHobby">
+        <input type="checkbox" id="codingAsHobby" name="question_9" value="DevOps specialist">
+        <h3 class="fs-subtitle">DevOps specialist (ensures smooth deployment and operation of software)</h3>
+    </label>
+    <label class="checkbox" for="dataScientist">
+        <input type="checkbox" id="dataScientist" name="question_9" value="Data scientist or machine learning specialist">
+        <h3 class="fs-subtitle">Data scientist or machine learning specialist (analyzes complex data sets or builds AI models)</h3>
+    </label>
+    <label class="checkbox" for="dbAdmin">
+        <input type="checkbox" id="dbAdmin" name="question_9" value="Database administrator">
+        <h3 class="fs-subtitle">Database administrator (manages and maintains the database systems)</h3>
+    </label>
+    <label class="checkbox" for="sysAdmin">
+        <input type="checkbox" id="sysAdmin" name="question_9" value="System administrator">
+        <h3 class="fs-subtitle">System administrator (oversees and maintains IT and computer systems)</h3>
+    </label>
+    <label class="checkbox" for="designer">
+        <input type="checkbox" id="designer" name="question_9" value="Designer">
+        <h3 class="fs-subtitle">Designer (focused on graphic, UI/UX, or web design)</h3>
+    </label>
+    <label class="checkbox" for="mobileAppDev">
+        <input type="checkbox" id="mobileAppDev" name="question_9" value="Mobile app developer">
+        <h3 class="fs-subtitle">Mobile app developer (specializes in developing applications for mobile platforms like Android and iOS)</h3>
+    </label>
+    <label class="checkbox" for="itSupport">
+        <input type="checkbox" id="itSupport" name="question_9" value="IT support specialist">
+        <h3 class="fs-subtitle">IT support specialist (provides technical support and troubleshooting services)</h3>
+    </label>
+    <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="question_9" value="AI engineer">
+        <h3 class="fs-subtitle">AI engineer (AI developer, prompt engineer)</h3>
+    </label>
+</div>
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+     <input type="button" name="next" class="next action-button" value="Next" />
+     
+   
+  </fieldset>
+
+   <fieldset>
+    
+ {% comment %} <label >10. How many years have you been coding professionally?</label>
+  <div class="gender-container">
+      <label class="radio" for="male"><input type="radio" id="male" name="gender" value="male" checked> <h3 class="fs-subtitle">less than a year</h3> </label>
+      <label class="radio" for="female"><input type="radio" id="female" name="gender" value="female">  <h3 class="fs-subtitle">Other</h3></label>
+   </div>
+   <label >6. If Professional Developer, which of the following best describes your current job role?</label>
+    <table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="checkbox" id="learningToCode" name="codingMissionStatus" value="Full-stack developer"></td>
+            <td><input type="checkbox" id="interestedInLearning" name="codingMissionStatus" value="Front-end developer"></td>
+            <td><input type="checkbox" id="interestedInLearning" name="codingMissionStatus" value="Front-end developer"></td>
+        </tr>
+        <tr>
+           
+           
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table> {% endcomment %}
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+      <input type="button" name="next" class="next action-button" value="Next" />
+     
+   
+  </fieldset>
+
+  
+  <fieldset>
+    <label>11. Which AI-powered search tools did you use regularly over the past year?</label>
+    <div class="coding-mission">
+        <label class="checkbox" for="chatgpt">
+            <input type="checkbox" id="chatgpt" name="question_11" value="ChatGPT">
+            <h3 class="fs-subtitle">ChatGPT</h3>
+        </label>
+        <label class="checkbox" for="bingai">
+            <input type="checkbox" id="bingai" name="question_11" value="Bing AI">
+            <h3 class="fs-subtitle">Bing AI</h3>
+        </label>
+        <label class="checkbox" for="wolframalpha">
+            <input type="checkbox" id="wolframalpha" name="question_11" value="WolframAlpha">
+            <h3 class="fs-subtitle">WolframAlpha</h3>
+        </label>
+        <label class="checkbox" for="googlebardai">
+            <input type="checkbox" id="googlebardai" name="question_11" value="Google Bard AI">
+            <h3 class="fs-subtitle">Google Bard AI</h3>
+        </label>
+        <label class="checkbox" for="phind">
+            <input type="checkbox" id="phind" name="question_11" value="Phind">
+            <h3 class="fs-subtitle">Phind</h3>
+        </label>
+        <label class="checkbox" for="youcom">
+            <input type="checkbox" id="youcom" name="question_11" value="You.com">
+            <h3 class="fs-subtitle">You.com</h3>
+        </label>
+        <label class="checkbox" for="perplexityai">
+            <input type="checkbox" id="perplexityai" name="question_11" value="Perplexity AI">
+            <h3 class="fs-subtitle">Perplexity AI</h3>
+        </label>
+        <label class="checkbox" for="quorapoe">
+            <input type="checkbox" id="quorapoe" name="question_11" value="Quora Poe">
+            <h3 class="fs-subtitle">Quora Poe</h3>
+        </label>
+        <label class="checkbox" for="neevaai">
+            <input type="checkbox" id="neevaai" name="question_11" value="Neeva AI">
+            <h3 class="fs-subtitle">Neeva AI</h3>
+        </label>
+        <label class="checkbox" for="andi">
+            <input type="checkbox" id="andi" name="question_11" value="Andi">
+            <h3 class="fs-subtitle">Andi</h3>
+        </label>
+        <label class="checkbox" for="metaphor">
+            <input type="checkbox" id="metaphor" name="question_11" value="Metaphor">
+            <h3 class="fs-subtitle">Metaphor</h3>
+        </label>
+        <label class="checkbox" for="noai">
+            <input type="checkbox" id="noai" name="question_11" value="I did not use AI-powered search tools">
+            <h3 class="fs-subtitle">I did not use AI-powered search tools</h3>
+        </label>
+        <label class="checkbox" for="otherai">
+            <input type="checkbox" id="otherai" name="question_11">
+            <h3 class="fs-subtitle">Other:</h3>
+            <input type="text" id="otherai_text" name="question_11">
+        </label>
+    </div>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+
+  
+  <fieldset>
+    <label >12. Which API did you use in last year? Select all that apply</label>    
+ <div class="coding-mission">
+    <label class="checkbox" for="learningToCode">
+        <input type="checkbox" id="learningToCode" name="codingMissionStatus" value="Full-stack developer">
+        <h3 class="fs-subtitle">Google Cloud AI APIs</h3>
+    </label>
+    <label class="checkbox" for="interestedInLearning">
+        <input type="checkbox" id="interestedInLearning" name="codingMissionStatus" value="Front-end developer">
+        <h3 class="fs-subtitle">IBM Watson APIs</h3>
+    </label>
+    <label class="checkbox" for="studentDeveloper">
+        <input type="checkbox" id="studentDeveloper" name="codingMissionStatus" value="Back-end developer">
+        <h3 class="fs-subtitle">Microsoft Azure Cognitive Services</h3>
+    </label>
+    <label class="checkbox" for="codingAsHobby">
+        <input type="checkbox" id="codingAsHobby" name="codingMissionStatus" value="DevOps specialist">
+        <h3 class="fs-subtitle">OpenAI API</h3>
+    </label>
+    <label class="checkbox" for="dataScientist">
+        <input type="checkbox" id="dataScientist" name="codingMissionStatus" value="Data scientist or machine learning specialist">
+        <h3 class="fs-subtitle">TensorFlow API</h3>
+    </label>
+    <label class="checkbox" for="dbAdmin">
+        <input type="checkbox" id="dbAdmin" name="codingMissionStatus" value="Database administrator">
+        <h3 class="fs-subtitle">Amazon Rekognition</h3>
+    </label>
+    <label class="checkbox" for="sysAdmin">
+        <input type="checkbox" id="sysAdmin" name="codingMissionStatus" value="System administrator">
+        <h3 class="fs-subtitle">Facebook AI API</h3>
+    </label>
+    <label class="checkbox" for="designer">
+        <input type="checkbox" id="designer" name="codingMissionStatus" value="Designer">
+        <h3 class="fs-subtitle">Clarifai API</h3>
+    </label>
+    <label class="checkbox" for="mobileAppDev">
+        <input type="checkbox" id="mobileAppDev" name="codingMissionStatus" value="Mobile app developer">
+        <h3 class="fs-subtitle">DeepAI API</h3>
+    </label>
+    <label class="checkbox" for="itSupport">
+        <input type="checkbox" id="itSupport" name="codingMissionStatus" value="IT support specialist">
+        <h3 class="fs-subtitle">RunwayML API</h3>
+    </label>
+    <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">Hugging Face's Transformers API</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">HReplicate API</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">Stability AI's Stable Diffusion API</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">VALL-E by Microsoft</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">Jukebox by OpenAI</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">Cohere API</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">Cohere API</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">AI21 Labs Studio</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">Option 21</h3>
+    </label>
+     <label class="checkbox" for="aiEngineer">
+        <input type="checkbox" id="aiEngineer" name="codingMissionStatus" value="AI engineer">
+        <h3 class="fs-subtitle">I did not use an API</h3>
+    </label>
+</div> 
+<input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+<fieldset>
+    <label >13. Have you ever trained a machine learning model?</label>
+    <div class="gender-container">
+        <label class="radio" for="male"><input type="radio" id="male" name="question_13" value="Yes" checked> <h3 class="fs-subtitle">Yes</h3> </label>
+        <label class="radio" for="female"><input type="radio" id="female" name="question_13" value="No">  <h3 class="fs-subtitle">No</h3></label>
+    </div>
+    <label >14. How many AI projects have you completed in the past year?</label>
+    <input type="text" name="question_14" id="email" />
+    
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <button class="submit action-button" target="_top">Submit</button>
+     
+</fieldset>
+</form>
+
+  </body>
+</html>
